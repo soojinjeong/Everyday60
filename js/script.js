@@ -329,6 +329,15 @@ document.addEventListener("DOMContentLoaded", () => {
     form.addEventListener("submit", async (e) => {
       e.preventDefault();
       
+      const dateValue = document.querySelector("#date").value;
+      const selectedDate = new Date(dateValue);
+      const dayOfWeek = selectedDate.getDay();
+    
+      if (dayOfWeek === 1) {
+        alert("We are closed on Mondays. Please choose another date.");
+        return; 
+      }
+      
       const data = {
         name: document.querySelector("#name").value,
         email: document.querySelector("#email").value,
