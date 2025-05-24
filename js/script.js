@@ -328,34 +328,50 @@ document.addEventListener("DOMContentLoaded", () => {
   if (form) {
     form.addEventListener("submit", async (e) => {
       e.preventDefault();
-      
-      const dateValue = document.querySelector("#date").value;
-      const selectedDate = new Date(dateValue);
-      const dayOfWeek = selectedDate.getDay();
     
+      const dateValue = document.querySelector("#date").value;
+      const timeValue = document.querySelector("#time").value;
+      const selectedDate = new Date(dateValue);
+      const dayOfWeek = selectedDate.getDay(); // 0 = Sun, 1 = Mon, ..., 6 = Sat
+    
+      // 월요일 예약 불가
       if (dayOfWeek === 1) {
         alert("We are closed on Mondays. Please choose another date.");
-        return; 
+        return;
       }
-      
+    
+      // 일요일 시간 제한 (09:00 ~ 17:00)
+      if (dayOfWeek === 0) {
+        const [hour, minute] = timeValue.split(":").map(Number);
+        const totalMinutes = hour * 60 + minute;
+    
+        const opening = 9 * 60;    // 09:00
+        const closing = 17 * 60;   // 17:00 (마감)
+    
+        if (totalMinutes < opening || totalMinutes > closing) {
+          alert("On Sundays, reservations are available only from 09:00 to 17:00.");
+          return;
+        }
+      }
+    
       const data = {
         name: document.querySelector("#name").value,
         email: document.querySelector("#email").value,
         phone: document.querySelector("#phone").value,
         guests: document.querySelector("#guests").value,
-        date: document.querySelector("#date").value,
-        time: document.querySelector("#time").value,
+        date: dateValue,
+        time: timeValue,
         seating: document.querySelector("#seating").value,
         notes: document.querySelector("#notes").value
       };
-
+    
       try {
         const response = await fetch("http://localhost:3000/reserve", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(data)
         });
-
+    
         if (response.ok) {
           alert("Your reservation is ready to confirm!");
         } else {
