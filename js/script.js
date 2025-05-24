@@ -332,21 +332,21 @@ document.addEventListener("DOMContentLoaded", () => {
       const dateValue = document.querySelector("#date").value;
       const timeValue = document.querySelector("#time").value;
       const selectedDate = new Date(dateValue);
-      const dayOfWeek = selectedDate.getDay(); // 0 = Sun, 1 = Mon, ..., 6 = Sat
+      const dayOfWeek = selectedDate.getDay();
     
-      // 월요일 예약 불가
+      // Reservation impossible on Mon
       if (dayOfWeek === 1) {
         alert("We are closed on Mondays. Please choose another date.");
         return;
       }
     
-      // 일요일 시간 제한 (09:00 ~ 17:00)
+      // Limit time on Sun (09:00 ~ 17:00)
       if (dayOfWeek === 0) {
         const [hour, minute] = timeValue.split(":").map(Number);
         const totalMinutes = hour * 60 + minute;
     
         const opening = 9 * 60;    // 09:00
-        const closing = 17 * 60;   // 17:00 (마감)
+        const closing = 17 * 60;   // 17:00 
     
         if (totalMinutes < opening || totalMinutes > closing) {
           alert("On Sundays, reservations are available only from 09:00 to 17:00.");
