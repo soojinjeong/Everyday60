@@ -333,6 +333,12 @@ document.addEventListener("DOMContentLoaded", () => {
       const timeValue = document.querySelector("#time").value;
       const selectedDate = new Date(dateValue);
       const dayOfWeek = selectedDate.getDay();
+      const today = new Date();
+
+      if (selectedDate < today.setHours(0, 0, 0, 0)) {
+        alert("You cannot reserve a date in the past.");
+        return;
+      }      
     
       // Reservation impossible on Mon
       if (dayOfWeek === 1) {
@@ -353,6 +359,24 @@ document.addEventListener("DOMContentLoaded", () => {
           return;
         }
       }
+
+      //Cannot reserve past day
+      const isToday =
+        selectedDate.getFullYear() === today.getFullYear() &&
+        selectedDate.getMonth() === today.getMonth() &&
+        selectedDate.getDate() === today.getDate();
+    
+      if (isToday) {
+        const [selectedHour, selectedMinute] = timeValue.split(":").map(Number);
+        const selectedMinutes = selectedHour * 60 + selectedMinute;
+    
+        const nowMinutes = today.getHours() * 60 + today.getMinutes();
+    
+        if (selectedMinutes <= nowMinutes) {
+          alert("You cannot reserve a time in the past.");
+          return;
+        }
+      }    
     
       const data = {
         name: document.querySelector("#name").value,
