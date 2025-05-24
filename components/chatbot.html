@@ -1,0 +1,25 @@
+<link rel="stylesheet" href="css/style.css"/>
+<script src="js/script.js"></script>
+<button class="chat-button" onclick="toggleChat()">
+    <img src="images/message_icon.png" alt="Chat Icon"/>
+</button>
+  
+<div class="chat-popup" id="chatPopup">
+    <div class="chat-header">
+      I can help to order your cake! <span>😊</span>
+    </div>
+    <div class="chat-body" id="chatBody">
+    </div>
+    <div class="chat-input-area">
+        <input
+          type="text"
+          class="chat-input"
+          id="chatInput"
+          placeholder="Type your message..."
+          onkeydown="if (event.key === 'Enter') { event.preventDefault(); sendMessage(); }"
+        />
+        <button class="send-button" onclick="sendMessage()">
+          <img src="images/send_icon.png" alt="Send" />
+        </button>
+      </div>
+</div>
