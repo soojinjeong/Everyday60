@@ -1329,4 +1329,13 @@ details[open] .qa-question {
 	.footer-block img {
 		width: 4rem;
 	}
+
+	.chat-popup {
+    width: 90%; 
+    height: 80vh; 
+    bottom: 10vh; 
+    right: 5%;
+    border-radius: 1rem;
+  }
+
 }
