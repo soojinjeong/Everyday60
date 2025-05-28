@@ -59,7 +59,7 @@ This system also includes admin-side Google Sheets integration to manage and app
 ```bash
 git clone https://github.com/soojinjeong/Everyday60.git
 cd Everyday60
-
+```
 
 
 **### 2. Install dependencies**
