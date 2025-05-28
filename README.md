@@ -53,19 +53,9 @@ This system also includes admin-side Google Sheets integration to manage and app
 
 ---
 
-## 📁 Folder Structure
+## 🚀 How to Run Locally
 
-Everyday60/
-├── components/               # Header, Footer, Seasonal Menu, Chatbot, Overlay
-├── css/
-│   └── style.css
-├── js/
-│   └── script.js
-├── server/
-│   └── server.js            # Express backend logic
-├── server-account.json      # Google service account key (excluded from git)
-├── index.html               # Landing page
-├── bakery.html              # Bakery 60 page
-├── bistro.html              # Bistro 60 page
-├── cake.html                # Cake image slider
-└── README.md                # ← You’re here
+### 1. Clone this repo
+```bash
+git clone https://github.com/soojinjeong/Everyday60.git
+cd Everyday60
