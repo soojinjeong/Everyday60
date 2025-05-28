@@ -1,3 +1,4 @@
+//Load external HTML content into the main page structure
 fetch("components/header.html")
   .then(res => res.text())
   .then(data => {
@@ -10,6 +11,7 @@ fetch("components/footer.html")
     document.getElementById("footer").innerHTML = data;
 });
 
+// Load the overlay menu and highlight current active link
 fetch("components/overlay.html")
   .then(res => res.text())
   .then(data => {
@@ -26,19 +28,21 @@ fetch("components/overlay.html")
   });
 });
 
-
+// Load seasonal menu into placeholder container
 fetch('components/seasonal-menu.html')
   .then(res => res.text())
   .then(data => {
     document.getElementById('seasonal-menu-placeholder').innerHTML = data;
 });
 
+// Load chatbot UI
 fetch("components/chatbot.html")
   .then(res => res.text())
   .then(data => {
     document.getElementById("chatbot-container").innerHTML = data;
 });
 
+// Overlay menu open animation
 function openOverlay() {
   const overlay = document.getElementById("overlay-menu");
   const layout = overlay.querySelector(".page-layout");
@@ -57,7 +61,8 @@ function openOverlay() {
     layout.style.transform = "translateX(0)";
   });
 }
-  
+
+// Overlay menu close animation
 function closeOverlay() {
   const overlay = document.getElementById("overlay-menu");
   const layout = overlay.querySelector(".page-layout");
@@ -71,6 +76,7 @@ function closeOverlay() {
   }, 800);
 }
 
+// Reveal animation when elements enter viewport
 document.addEventListener("DOMContentLoaded", () => {
     const reveals = document.querySelectorAll(".reveal");
 
@@ -94,10 +100,11 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 });
 
+// Cake slideshow for main image banner
 document.addEventListener("DOMContentLoaded", () => {
   const img = document.getElementById("cakeImage");
 
-  const cakeImages = [
+  const cakeImages = [ //Array of images URLs
     "https://freight.cargo.site/t/original/i/C2104879694705208486813343955560/DB41140C-487B-4379-933D-21EA8753BB3D.jpg",
     "https://freight.cargo.site/t/original/i/Y2104879694742101974960763058792/IMG_9050.jpeg",
     "https://freight.cargo.site/t/original/i/Z2104879694428507325707700681320/IMG_0136.jpeg",
@@ -135,8 +142,9 @@ document.addEventListener("DOMContentLoaded", () => {
   window.prevCake = prevCake;
 });
 
+// Add hover effect to product images (desktop only)
 document.addEventListener("DOMContentLoaded", () => {
-  const isMobile = window.innerWidth <= 800;
+  const isMobile = window.innerWidth <= 800; // Not working in mobile version
   if (isMobile) return;
 
   const hoverableImages = document.querySelectorAll(".hoverable-image img");
@@ -148,6 +156,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const hoverImg = document.createElement("img");
     hoverImg.src = hoverSrc;
     hoverImg.alt = originalImg.alt + " hover";
+    //Styling
     hoverImg.style.position = "absolute";
     hoverImg.style.top = "0";
     hoverImg.style.left = "0";
@@ -174,6 +183,7 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 
+// Add hover effect to product images (desktop only)
 document.addEventListener("DOMContentLoaded", () => {
   const isMobile = window.innerWidth <= 800;
   if (isMobile) return;
@@ -251,7 +261,7 @@ document.addEventListener("DOMContentLoaded", () => {
   window.prevCake2 = prevCake2;
 });
 
-//reservation form
+// Reservation time options generator
 document.addEventListener("DOMContentLoaded", () => {
   const timeSelect = document.getElementById("time");
   const start = 7 * 60; // 07:00
@@ -268,6 +278,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 });
 
+// Ser color of dropdown if nothing is selected
 document.addEventListener("DOMContentLoaded", function () {
   const select = document.getElementById("seating");
 
@@ -284,11 +295,13 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 });
 
+// Chat system toggle
 function toggleChat() {
   const chatPopup = document.getElementById("chatPopup");
   chatPopup.style.display = chatPopup.style.display === "flex" ? "none" : "flex";
 }
 
+// Append user message to chatbot window
 function sendMessage() {
   const input = document.getElementById("chatInput");
   const message = input.value.trim();
@@ -298,6 +311,7 @@ function sendMessage() {
   const messageDiv = document.createElement("div");
 
   messageDiv.textContent = message;
+  //Message bubble styling
   messageDiv.style.display = "inline-block";         
   messageDiv.style.backgroundColor = "#fff";
   messageDiv.style.borderRadius = "1rem";
@@ -312,6 +326,7 @@ function sendMessage() {
   chatBody.scrollTop = chatBody.scrollHeight;
 }
 
+//Enable sending message via Enter key
 document.addEventListener("DOMContentLoaded", function () {
   const input = document.getElementById("chatInput");
   input.addEventListener("keydown", function (e) {
@@ -322,7 +337,7 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 });
 
-//Back-end
+//Reservation form submission with custom rules
 document.addEventListener("DOMContentLoaded", () => {
   const form = document.querySelector(".reservation-form");
   if (form) {
@@ -335,6 +350,7 @@ document.addEventListener("DOMContentLoaded", () => {
       const dayOfWeek = selectedDate.getDay();
       const today = new Date();
 
+      // Prevent past dates
       if (selectedDate < today.setHours(0, 0, 0, 0)) {
         alert("You cannot reserve a date in the past.");
         return;
@@ -360,7 +376,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
       }
 
-      //Cannot reserve past day
+      //Prevent past times on the same day
       const isToday =
         selectedDate.getFullYear() === today.getFullYear() &&
         selectedDate.getMonth() === today.getMonth() &&
@@ -378,6 +394,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
       }    
     
+      // Prepare reservation data
       const data = {
         name: document.querySelector("#name").value,
         email: document.querySelector("#email").value,
@@ -389,6 +406,7 @@ document.addEventListener("DOMContentLoaded", () => {
         notes: document.querySelector("#notes").value
       };
     
+      // Send data to server
       try {
         const response = await fetch("http://localhost:3000/reserve", {
           method: "POST",
