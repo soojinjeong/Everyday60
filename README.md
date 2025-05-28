@@ -62,23 +62,32 @@ cd Everyday60
 ```
 
 
-**### 2. Install dependencies**
+### 2. Install dependencies
 
+
+
+```
 cd server
 npm install
 npm install express
 npm install cors
 npm install body-parser
 npm install googleapis
+```
 
-**### 3. Start the server**
 
+
+### 3. Start the server
+
+```
 cd server
 node index.js
+```
 
 Server will run on: http://localhost:3000
 
-**###4. Open index.html in a browser**
+
+###4. Open index.html in a browser
 
 ---
 
