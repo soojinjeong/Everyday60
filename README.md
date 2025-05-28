@@ -88,7 +88,7 @@ Server will run on: http://localhost:3000
 
 
 
-###4. Open index.html in a browser
+### 4. Open index.html in a brower
 
 
 
@@ -96,7 +96,7 @@ Server will run on: http://localhost:3000
 
 
 
-##📧 Google Sheets Integration
+## 📧 Google Sheets Integration
 
 
 
@@ -111,7 +111,7 @@ Server will run on: http://localhost:3000
 
 
 
-##📄 Licens
+## 📄 Licens
 
 MIT License
 © 2025 Soojin Jeong
