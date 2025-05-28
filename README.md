@@ -59,3 +59,37 @@ This system also includes admin-side Google Sheets integration to manage and app
 ```bash
 git clone https://github.com/soojinjeong/Everyday60.git
 cd Everyday60
+
+**### 2. Install dependencies**
+
+cd server
+npm install
+npm install express
+npm install cors
+npm install body-parser
+npm install googleapis
+
+**### 3. Start the server**
+
+cd server
+node index.js
+
+Server will run on: http://localhost:3000
+
+**###4. Open index.html in a browser**
+
+---
+
+**📧 Google Sheets Integration**
+	1.	Setup a Google Sheet with headers (name, email, phone, guests, date, time, seating, notes)
+	2.	Create a Google Apps Script and paste the sendApprovalEmail() function
+	3.	Link trigger to run on edit in the approval column
+	4.	Place your service account key as server-account.json (make sure it’s .gitignored)
+
+---
+
+**##📄 License**
+
+MIT License
+© 2025 Soojin Jeong
+
